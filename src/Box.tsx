@@ -1,3 +1,5 @@
+import { IBoxProps } from "./interfaces";
+
 /** Colored box presentation
  *
  * Props:

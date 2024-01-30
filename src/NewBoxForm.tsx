@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuid } from 'uuid';
+import { ICreateBoxProps } from "./interfaces";
 
 /** Form for adding box.
  *
@@ -19,26 +20,31 @@ function NewBoxForm({ createBox }: ICreateBoxProps) {
 
   /** Update form input. */
   function handleChange(evt: React.ChangeEvent<HTMLInputElement>) : void {
-    const { name, value } = evt.target;
+    const input = evt.target;
     setFormData(formData => ({
       ...formData,
-      [name]: value,
+      [input.name]: input.value,
     }));
   }
+
+  // function handleNumericChange(evt: React.ChangeEvent<HTMLInputElement>) : void {
+  //   const input = evt.target;
+  //   setFormData(formData => ({
+  //     ...formData,
+  //     [input.name]: Number(input.value),
+  //   }));
+  // }
 
   /** Submit form: call function from parent & clear inputs. */
   function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
-    createBox({ ...formData, id: uuid() });
+    const alteredFormData = {
+      height: Number(formData.height),
+      width: Number(formData.width),
+      backgroundColor: formData.backgroundColor
+    }
+    createBox({ ...alteredFormData, id: uuid() });
     setFormData(INITIAL_DATA);
-  }
-
-  function handleNumericChange(evt: React.ChangeEvent<HTMLInputElement>) : void {
-    const { name, value } = evt.target;
-    setFormData(formData => ({
-      ...formData,
-      [name]: Number(value),
-    }));
   }
 
   return (
@@ -48,7 +54,7 @@ function NewBoxForm({ createBox }: ICreateBoxProps) {
             <label htmlFor="newBox-height">Height</label>
             <input
                 id="newBox-height"
-                onChange={handleNumericChange}
+                onChange={handleChange}
                 name="height"
                 value={formData.height}
                 type="number"
@@ -58,7 +64,7 @@ function NewBoxForm({ createBox }: ICreateBoxProps) {
             <label htmlFor="newBox-width">Width</label>
             <input
                 id="newBox-width"
-                onChange={handleNumericChange}
+                onChange={handleChange}
                 name="width"
                 value={formData.width}
                 type="number"

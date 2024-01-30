@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
+import { IBox } from "./interfaces"
 
 /** Manage list of boxes
  *
