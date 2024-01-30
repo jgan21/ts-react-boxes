@@ -1,11 +1,15 @@
 interface IBox {
-    id: string,
-    width: number,
-    height: number,
-    backgroundColor: string
-  }
+  id: string,
+  width: number,
+  height: number,
+  backgroundColor: string,
+}
 
-  interface IBoxProps{
+interface IBoxProps extends IBox {
+  remove: (id: string) => void;
+}
 
-  }
+interface ICreateBoxProps {
+  createBox: (newBox : IBox) => void;
+}
 
