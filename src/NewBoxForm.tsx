@@ -26,6 +26,7 @@ function NewBoxForm({ createBox }: ICreateBoxProps) {
       [input.name]: input.value,
     }));
   }
+  console.log("handleChange= ", formData)
 
   // function handleNumericChange(evt: React.ChangeEvent<HTMLInputElement>) : void {
   //   const input = evt.target;
@@ -34,6 +35,7 @@ function NewBoxForm({ createBox }: ICreateBoxProps) {
   //     [input.name]: Number(input.value),
   //   }));
   // }
+  // console.log("handleNumericChange= ", formData)
 
   /** Submit form: call function from parent & clear inputs. */
   function handleSubmit(evt: React.FormEvent) {
